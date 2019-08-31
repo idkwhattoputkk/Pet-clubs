@@ -207,5 +207,64 @@ public class Controller {
 		// ******************************
 		// ******************************
 		
+		//bubble
+		public void orderByNamePets() {
+			for(int h=0;h<clubs.size();h++) {
+				for (int i = clubs.get(h).getOwners().get(h).getPets().size(); i > 0; i--) {
+					for (int j = 0; j < i - 1; j++) {
+						Pet o1 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j);
+						Pet o2 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j + 1);
+	
+						if (o1.compareByName(o2) > 0) {
+							clubs.get(h).getOwners().get(h).getPets().set(j, o2);
+							clubs.get(h).getOwners().get(h).getPets().set(j + 1, o1);
+						}
+					}
+				}
+			}
+		}
+		//insertion
+		public void orderByBDPets() {
+			for(int h=0;h<clubs.size();h++) {
+				for(int i=1;i<clubs.get(h).getOwners().get(h).getPets().size();i++) {
+					Pet toIterate = (Pet) clubs.get(h).getOwners().get(h).getPets().get(i);
+					boolean finished =false;
+					
+					for(int j=i;j>0 && !finished;j--) {
+						Pet fromNow=(Pet) clubs.get(h).getOwners().get(h).getPets().get(j-1);
+						if(fromNow.compareByDate(toIterate)>0) {
+							clubs.get(h).getOwners().get(h).getPets().set(j, fromNow);
+							clubs.get(h).getOwners().get(h).getPets().set(j-1, toIterate);
+						}else {
+							finished=true;
+						}
+					}
+				}
+			}
+		}
+		//selection
+		public void orderByIdPets() {
+			for(int h=0;h<clubs.size();h++) {
+				int init;
+				for(init=0;init<clubs.get(h).getOwners().get(h).getPets().size();init++) {
+					int lesser=init;
+					Owner less = (Owner)clubs.get(h).getOwners().get(init);
+					
+					for(int i=init+1;i<clubs.get(h).getOwners().size();i++) {
+						Owner f =(Owner)clubs.get(h).getOwners().get(i);
+						if(f.compareById(less)<0) {
+							less=f;
+							lesser=i;
+						}
+					}
+					if(lesser!=init) {
+						Owner temp = (Owner)clubs.get(h).getOwners().get(init);
+						clubs.get(h).getOwners().set(init, less);
+						clubs.get(h).getOwners().set(lesser, temp);
+					}
+				}
+			}
+		}
+		
 
 }
