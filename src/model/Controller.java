@@ -71,12 +71,52 @@ public class Controller {
 		return toPaint;
 	}
 	// binary search
-	public void searchBYTime(String date) {
-		orderByIdClubs();
+	public Club searchByDate(String date) {
+		orderByDateClubs();
 		int init=0;
 		boolean ended = false;
 		int end = clubs.size()-1;
 		Club toSearch = new Club("",date, "", "");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Club mid = (Club)clubs.get(middle);
+			if(mid.compareByDate(toSearch)==0) {
+				ended=true;
+			}else if(mid.compareByDate(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+	// binary search
+	public Club searchClubsId(String id) {
+		orderByIdClubs();
+		int init=0;
+		boolean ended = false;
+		int end = clubs.size()-1;
+		Club toSearch = new Club("","", id, "");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Club mid = (Club) clubs.get(middle);
+			if(mid.compareById(toSearch)==0) {
+				ended=true;
+			}else if(mid.compareById(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+	// binary search
+	public Club searchByTypePet(String typePet) {
+		orderByTypePetClubs();
+		int init=0;
+		boolean ended = false;
+		int end = clubs.size()-1;
+		Club toSearch = new Club("","", "", typePet);
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Club mid = (Club)clubs.get(middle);
@@ -88,6 +128,7 @@ public class Controller {
 				end= middle+1;
 			}
 		}
+		return toSearch;
 	}
 	
 	// bubble
@@ -163,6 +204,20 @@ public class Controller {
 		//
 		// ***********************************************************************
 		// ***********************************************************************
+		
+		// sequential search
+		public Owner searchByNameOwner(String name) {
+			boolean ended=false;
+			Owner toPaint=null;
+			for(int i=0;i<clubs.size() && !ended;i++) {
+				for(int j=0;j<clubs.get(i).getOwners().size();j++) {
+					if(clubs.get(j).getOwners().get(j).getFullName().equalsIgnoreCase(name)) {
+						ended=true;
+						}
+				}
+			}
+			return toPaint;
+		}
 		
 		// bubble
 		public void orderByfullNameOwners() {
