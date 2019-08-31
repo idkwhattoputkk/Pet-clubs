@@ -59,7 +59,7 @@ public class Owner implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return id +" "+ fullName+" "+birthdate+" "+typePet;
+		return "id: "+id +", nombre: "+ fullName+", fecha de nacimiento: "+birthdate+", tipo de mascota: "+typePet;
 				
 	}
 	

@@ -17,51 +17,6 @@ public class Club {
 		this.typePet = typePet;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDate() {
-		return date;
-	}
-
-	public void setDate(String date) {
-		this.date = date;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getTypePet() {
-		return typePet;
-	}
-
-	public void setTypePet(String typePet) {
-		this.typePet = typePet;
-	}
-
-	public ArrayList<Owner> getOwners() {
-		return owners;
-	}
-
-	public void setOwners(ArrayList<Owner> owners) {
-		this.owners = owners;
-	}
-	@Override
-	public String toString() {
-		return "id: "+id +", nombre: "+ name+", fecha creacion: "+date+", tipo de mascota: "+typePet;
-				
-	}
-
 	public int compareByName(Club c) {
 		int valueToComparate = name.compareToIgnoreCase(c.name);
 		if (valueToComparate < 0) {
@@ -106,6 +61,50 @@ public class Club {
 			valueToComparate = 1;
 		}
 		return valueToComparate;
+	}
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDate() {
+		return date;
+	}
+
+	public void setDate(String date) {
+		this.date = date;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getTypePet() {
+		return typePet;
+	}
+
+	public void setTypePet(String typePet) {
+		this.typePet = typePet;
+	}
+
+	public ArrayList<Owner> getOwners() {
+		return owners;
+	}
+
+	public void setOwners(ArrayList<Owner> owners) {
+		this.owners = owners;
+	}
+	@Override
+	public String toString() {
+		return "id: "+id +", nombre: "+ name+", fecha creacion: "+date+", tipo de mascota: "+typePet;
+				
 	}
 	
 	
