@@ -17,7 +17,6 @@ public class Owner implements Serializable {
 		this.birthdate = birthdate;
 		this.typePet = typePet;
 	}
-
 	public int compareByName(Owner o) {
 		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
 		if (valueToComparate < 0) {
