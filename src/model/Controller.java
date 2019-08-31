@@ -46,6 +46,7 @@ public class Controller {
 		for(Club c: clubs) {
 			pr.println(c.toString());
 		}
+		pr.close();
 	}
 	public void orderByNameClubs() {
 		for (int i = clubs.size(); i > 0; i--) {
