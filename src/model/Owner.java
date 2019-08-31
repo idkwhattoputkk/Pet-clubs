@@ -18,6 +18,51 @@ public class Owner implements Serializable {
 		this.typePet = typePet;
 	}
 
+	public int compareByName(Owner o) {
+		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	
+	public int compareByDate(Owner o) {
+		int valueToComparate = birthdate.compareToIgnoreCase(o.birthdate);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	public int compareById(Owner o) {
+		int valueToComparate = id.compareToIgnoreCase(o.id);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	public int compareByTypePet(Owner o) {
+		int valueToComparate = typePet.compareToIgnoreCase(o.typePet);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
 	public String getId() {
 		return id;
 	}

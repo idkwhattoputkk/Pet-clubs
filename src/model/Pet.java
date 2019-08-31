@@ -17,6 +17,62 @@ public class Pet implements Serializable{
 		this.typePet = typePet;
 	}
 
+	public int compareByName(Pet p) {
+		int valueToComparate = name.compareToIgnoreCase(p.name);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	
+	public int compareByDate(Pet p) {
+		int valueToComparate = birthdate.compareToIgnoreCase(p.birthdate);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	public int compareById(Pet p) {
+		int valueToComparate = id.compareToIgnoreCase(p.id);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	public int compareByTypePet(Pet p) {
+		int valueToComparate = typePet.compareToIgnoreCase(p.typePet);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
+	public int compareByGender(Pet p) {
+		int valueToComparate = gender.compareToIgnoreCase(p.gender);
+		if (valueToComparate < 0) {
+			valueToComparate = -1;
+		} else if (valueToComparate == 0) {
+			valueToComparate = 0;
+		} else {
+			valueToComparate = 1;
+		}
+		return valueToComparate;
+	}
 	public String getId() {
 		return id;
 	}
