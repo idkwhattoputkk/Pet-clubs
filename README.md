@@ -7,8 +7,8 @@ ___
 
 # Created and designed by
 
-A00351911 | Documenation | 
+Data | Documentation | 
 --- | --- 
-[*Emmanuel Umaña - A00351911.*](https://github.com/idkwhattoputkk) | [`Documentacion`](https://docs.google.com/document/d/1tI85EQwc7_KuH0VfSeIHX9wY9fH2ehUgd0fG0zfRO1I/edit?usp=sharing)` | 
-1 | 2 
+[*Emmanuel Umaña - A00351911.*](https://github.com/idkwhattoputkk) | [`Documentacion](https://docs.google.com/document/d/1tI85EQwc7_KuH0VfSeIHX9wY9fH2ehUgd0fG0zfRO1I/edit?usp=sharing)` | 
+A00351911 | pdf files
 
