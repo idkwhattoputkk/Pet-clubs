@@ -49,6 +49,47 @@ public class Controller {
 		}
 		pr.close();
 	}
+	
+	
+	// *********************************************************************
+	// *********************************************************************
+	//
+	// ordering the Clubs array list and creating the search methods.
+	//
+	// *********************************************************************
+	// *********************************************************************
+
+	// sequential search
+	public Club searchByName(String name) {
+		boolean ended=false;
+		Club toPaint=null;
+		for(int i=0;i<clubs.size() && !ended;i++) {
+			if(clubs.get(i).getName().equalsIgnoreCase(name)) {
+				ended=true;
+				}
+		}
+		return toPaint;
+	}
+	// binary search
+	public void searchBYTime(String date) {
+		orderByIdClubs();
+		int init=0;
+		boolean ended = false;
+		int end = clubs.size()-1;
+		Club toSearch = new Club("",date, "", "");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Club mid = (Club)clubs.get(middle);
+			if(mid.compareById(toSearch)==0) {
+				ended=true;
+			}else if(mid.compareById(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+	}
+	
 	// bubble
 	public void orderByNameClubs() {
 		for (int i = clubs.size(); i > 0; i--) {
@@ -115,14 +156,13 @@ public class Controller {
 				}
 			}
 		}
-		// ******************************
-		// ******************************
+		// ***********************************************************************
+		// ***********************************************************************
 		//
-		// ordering the owners array list
+		// ordering the owners array list and creating the owners search methods
 		//
-		// ******************************
-		// ******************************
-
+		// ***********************************************************************
+		// ***********************************************************************
 		
 		// bubble
 		public void orderByfullNameOwners() {
@@ -199,13 +239,13 @@ public class Controller {
 			}
 		}
 		
-		// ******************************
-		// ******************************
+		// *********************************************************************
+		// *********************************************************************
 		//
-		// ordering the Pets array list
+		// ordering the Pets array list and creating the search methods for pets
 		//
-		// ******************************
-		// ******************************
+		// *********************************************************************
+		// *********************************************************************
 		
 		//bubble
 		public void orderByNamePets() {
@@ -248,23 +288,56 @@ public class Controller {
 				int init;
 				for(init=0;init<clubs.get(h).getOwners().get(h).getPets().size();init++) {
 					int lesser=init;
-					Owner less = (Owner)clubs.get(h).getOwners().get(init);
+					Pet less = (Pet)clubs.get(h).getOwners().get(h).getPets().get(init);
 					
-					for(int i=init+1;i<clubs.get(h).getOwners().size();i++) {
-						Owner f =(Owner)clubs.get(h).getOwners().get(i);
+					for(int i=init+1;i<clubs.get(h).getOwners().get(h).getPets().size();i++) {
+						Pet f =(Pet)clubs.get(h).getOwners().get(h).getPets().get(i);
 						if(f.compareById(less)<0) {
 							less=f;
 							lesser=i;
 						}
 					}
 					if(lesser!=init) {
-						Owner temp = (Owner)clubs.get(h).getOwners().get(init);
-						clubs.get(h).getOwners().set(init, less);
-						clubs.get(h).getOwners().set(lesser, temp);
+						Pet temp = (Pet)clubs.get(h).getOwners().get(h).getPets().get(init);
+						clubs.get(h).getOwners().get(h).getPets().set(init, less);
+						clubs.get(h).getOwners().get(h).getPets().set(lesser, temp);
 					}
 				}
 			}
 		}
+		//bubble
+		public void orderByTypePetPets() {
+			for(int h=0;h<clubs.size();h++) {
+				for (int i = clubs.get(h).getOwners().get(h).getPets().size(); i > 0; i--) {
+					for (int j = 0; j < i - 1; j++) {
+						Pet o1 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j);
+						Pet o2 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j + 1);
+	
+						if (o1.compareByTypePet(o2) > 0) {
+							clubs.get(h).getOwners().get(h).getPets().set(j, o2);
+							clubs.get(h).getOwners().get(h).getPets().set(j + 1, o1);
+						}
+					}
+				}
+			}
+		}
+		//bubble
+		public void orderByGender() {
+			for(int h=0;h<clubs.size();h++) {
+				for (int i = clubs.get(h).getOwners().get(h).getPets().size(); i > 0; i--) {
+					for (int j = 0; j < i - 1; j++) {
+						Pet o1 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j);
+						Pet o2 = (Pet) clubs.get(h).getOwners().get(h).getPets().get(j + 1);
+	
+						if (o1.compareByGender(o2) > 0) {
+							clubs.get(h).getOwners().get(h).getPets().set(j, o2);
+							clubs.get(h).getOwners().get(h).getPets().set(j + 1, o1);
+						}
+					}
+				}
+			}
+		}
+		
 		
 
 }
