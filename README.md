@@ -9,6 +9,6 @@ ___
 
 A00351911 | Documenation | 
 --- | --- 
-* Emmanuel Umaña - A00351911. *](https://github.com/idkwhattoputkk) | [` Documentacion `](https://docs.google.com/document/d/1tI85EQwc7_KuH0VfSeIHX9wY9fH2ehUgd0fG0zfRO1I/edit?usp=sharing)` | 
+[*Emmanuel Umaña - A00351911.*](https://github.com/idkwhattoputkk) | [`Documentacion`](https://docs.google.com/document/d/1tI85EQwc7_KuH0VfSeIHX9wY9fH2ehUgd0fG0zfRO1I/edit?usp=sharing)` | 
 1 | 2 
 
