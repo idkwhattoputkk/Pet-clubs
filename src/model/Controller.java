@@ -66,6 +66,7 @@ public class Controller {
 		for(int i=0;i<clubs.size() && !ended;i++) {
 			if(clubs.get(i).getName().equalsIgnoreCase(name)) {
 				ended=true;
+				toPaint =(Club) clubs.get(i);
 				}
 		}
 		return toPaint;
@@ -120,9 +121,9 @@ public class Controller {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Club mid = (Club)clubs.get(middle);
-			if(mid.compareById(toSearch)==0) {
+			if(mid.compareByTypePet(toSearch)==0) {
 				ended=true;
-			}else if(mid.compareById(toSearch)>0) {
+			}else if(mid.compareByTypePet(toSearch)>0) {
 				end = middle-1;
 			}else {
 				end= middle+1;
@@ -213,10 +214,81 @@ public class Controller {
 				for(int j=0;j<clubs.get(i).getOwners().size();j++) {
 					if(clubs.get(j).getOwners().get(j).getFullName().equalsIgnoreCase(name)) {
 						ended=true;
+						toPaint = (Owner)clubs.get(j).getOwners().get(j);
 						}
 				}
 			}
 			return toPaint;
+		}
+		
+		// binary search
+		public Owner searchOwnersId(String id) {
+			orderByIdOwner();
+			int init=0;
+			boolean ended = false;
+			Owner toSearch = null;
+			for(int i=0;i<clubs.size();i++) {
+				int end = clubs.get(i).getOwners().size()-1;
+				toSearch = new Owner(id,"", "", "");
+				while(init<= end && !ended) {
+					int middle=(init+end)/2;
+					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
+					if(mid.compareById(toSearch)==0) {
+						ended=true;
+					}else if(mid.compareById(toSearch)>0) {
+						end = middle-1;
+					}else {
+						end= middle+1;
+					}
+				}
+			}
+			return toSearch;
+		}
+		// binary search
+		public Owner searchOwnersBD(String BD) {
+			orderByBDOwners();
+			int init=0;
+			boolean ended = false;
+			Owner toSearch = null;
+			for(int i=0;i<clubs.size();i++) {
+				int end = clubs.get(i).getOwners().size()-1;
+				toSearch = new Owner("","", BD, "");
+				while(init<= end && !ended) {
+					int middle=(init+end)/2;
+					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
+					if(mid.compareByDate(toSearch)==0) {
+						ended=true;
+					}else if(mid.compareByDate(toSearch)>0) {
+						end = middle-1;
+					}else {
+						end= middle+1;
+					}
+				}
+			}
+			return toSearch;
+		}
+		// binary search
+		public Owner searchOwnersTypePet(String TypePet) {
+			orderByTypePetOwners();
+			int init=0;
+			boolean ended = false;
+			Owner toSearch = null;
+			for(int i=0;i<clubs.size();i++) {
+				int end = clubs.get(i).getOwners().size()-1;
+				toSearch = new Owner("","", "", TypePet);
+				while(init<= end && !ended) {
+					int middle=(init+end)/2;
+					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
+					if(mid.compareByTypePet(toSearch)==0) {
+						ended=true;
+					}else if(mid.compareByTypePet(toSearch)>0) {
+						end = middle-1;
+					}else {
+						end= middle+1;
+					}
+				}
+			}
+			return toSearch;
 		}
 		
 		// bubble
@@ -301,6 +373,67 @@ public class Controller {
 		//
 		// *********************************************************************
 		// *********************************************************************
+		
+		// sequential search
+		public Pet searchByNamePet(String name) {
+			boolean ended=false;
+			Pet toPaint=null;
+			for(int i=0;i<clubs.size() && !ended;i++) {
+				for(int j=0;j<clubs.get(i).getOwners().get(j).getPets().size();j++) {
+					if(clubs.get(j).getOwners().get(j).getPets().get(j).getName().equalsIgnoreCase(name)) {
+						ended=true;
+						toPaint = (Pet)clubs.get(j).getOwners().get(j).getPets().get(j);
+						}
+				}
+			}
+			return toPaint;
+		}
+		// binary search
+		public Pet searchPetId(String id) {
+			orderByIdOwner();
+			int init=0;
+			boolean ended = false;
+			Pet toSearch = null;
+			for(int i=0;i<clubs.size();i++) {
+				int end = clubs.get(i).getOwners().get(i).getPets().size()-1;
+				toSearch = new Pet(id,"", "", "", "");
+				while(init<= end && !ended) {
+					int middle=(init+end)/2;
+					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
+					if(mid.compareById(toSearch)==0) {
+						ended=true;
+					}else if(mid.compareById(toSearch)>0) {
+						end = middle-1;
+					}else {
+						end= middle+1;
+					}
+				}
+			}
+			return toSearch;
+		}
+		// binary search
+		public Pet searchPetBD(String bd) {
+			orderByIdOwner();
+			int init=0;
+			boolean ended = false;
+			Pet toSearch = null;
+			for(int i=0;i<clubs.size();i++) {
+				int end = clubs.get(i).getOwners().get(i).getPets().size()-1;
+				toSearch = new Pet("","", bd, "", "");
+				while(init<= end && !ended) {
+					int middle=(init+end)/2;
+					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
+					if(mid.compareByDate(toSearch)==0) {
+						ended=true;
+					}else if(mid.compareByDate(toSearch)>0) {
+						end = middle-1;
+					}else {
+						end= middle+1;
+					}
+				}
+			}
+			return toSearch;
+		}
 		
 		//bubble
 		public void orderByNamePets() {

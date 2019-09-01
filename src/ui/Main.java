@@ -1,15 +1,20 @@
 package ui;
 import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import model.Controller;
 
 
 public class Main {
-	Controller control;
-	BufferedReader lector;
+	private Controller control;
+	private BufferedReader lector;
 
+	public Main() {
+		lector = new BufferedReader(new InputStreamReader(System.in));
+		control = new Controller();
+	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Main m = new Main();
 
 	}
 	
