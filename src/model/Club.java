@@ -5,16 +5,19 @@ import java.util.ArrayList;
 public class Club {
 	
 	//attributes
-	private String name, date, id, typePet;
+	private String name, date, typePet;
+	private int id;
 	private ArrayList<Owner> owners;
 
 	// methods
-	public Club(String name, String date, String id, String typePet) {
+	public Club(String name, String date, int id, String typePet) {
 		super();
 		this.name = name;
 		this.date = date;
 		this.id = id;
 		this.typePet = typePet;
+		
+		owners= new ArrayList<>();
 	}
 
 	public int compareByName(Club c) {
@@ -31,17 +34,6 @@ public class Club {
 	
 	public int compareByDate(Club c) {
 		int valueToComparate = date.compareToIgnoreCase(c.date);
-		if (valueToComparate < 0) {
-			valueToComparate = -1;
-		} else if (valueToComparate == 0) {
-			valueToComparate = 0;
-		} else {
-			valueToComparate = 1;
-		}
-		return valueToComparate;
-	}
-	public int compareById(Club c) {
-		int valueToComparate = id.compareToIgnoreCase(c.id);
 		if (valueToComparate < 0) {
 			valueToComparate = -1;
 		} else if (valueToComparate == 0) {
@@ -78,11 +70,11 @@ public class Club {
 		this.date = date;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

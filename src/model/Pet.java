@@ -5,10 +5,11 @@ import java.io.Serializable;
 public class Pet implements Serializable{
 	
 	//attributes
-	private String id, name, birthdate, gender, typePet;
+	private String name, birthdate, gender, typePet;
+	private int id;
 	
 	//methods
-	public Pet(String id, String name, String birthdate, String gender, String typePet) {
+	public Pet(int id, String name, String birthdate, String gender, String typePet) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -40,17 +41,6 @@ public class Pet implements Serializable{
 		}
 		return valueToComparate;
 	}
-	public int compareById(Pet p) {
-		int valueToComparate = id.compareToIgnoreCase(p.id);
-		if (valueToComparate < 0) {
-			valueToComparate = -1;
-		} else if (valueToComparate == 0) {
-			valueToComparate = 0;
-		} else {
-			valueToComparate = 1;
-		}
-		return valueToComparate;
-	}
 	public int compareByTypePet(Pet p) {
 		int valueToComparate = typePet.compareToIgnoreCase(p.typePet);
 		if (valueToComparate < 0) {
@@ -73,11 +63,11 @@ public class Pet implements Serializable{
 		}
 		return valueToComparate;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

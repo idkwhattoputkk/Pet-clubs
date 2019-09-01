@@ -15,11 +15,17 @@ public class Controller {
 	public final static String PET_PATH="./data" + File.separator + "pets.txt";
 	private ArrayList<Club> clubs;
 	
-	//methods
 	
-	public Controller() {
-		
+	//methods
+	public ArrayList<Club> getClubs() {
+		return clubs;
 	}
+	public void setClubs(ArrayList<Club> clubs) {
+		this.clubs = clubs;
+	}
+	public Controller() {
+		clubs = new ArrayList<>();
+		}
 	public void saveAll() throws FileNotFoundException, IOException {
 		saveOwners(OWNER_PATH);
 		saveClubs(CLUB_PATH);
@@ -77,7 +83,7 @@ public class Controller {
 		int init=0;
 		boolean ended = false;
 		int end = clubs.size()-1;
-		Club toSearch = new Club("",date, "", "");
+		Club toSearch = new Club("",date, 0, "");
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Club mid = (Club)clubs.get(middle);
@@ -92,7 +98,7 @@ public class Controller {
 		return toSearch;
 	}
 	// binary search
-	public Club searchClubsId(String id) {
+	public Club searchClubsId(int id) {
 		orderByIdClubs();
 		int init=0;
 		boolean ended = false;
@@ -101,9 +107,9 @@ public class Controller {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Club mid = (Club) clubs.get(middle);
-			if(mid.compareById(toSearch)==0) {
+			if(toSearch.getId()==mid.getId()) {
 				ended=true;
-			}else if(mid.compareById(toSearch)>0) {
+			}else if(toSearch.getId()<mid.getId()) {
 				end = middle-1;
 			}else {
 				end= middle+1;
@@ -117,7 +123,7 @@ public class Controller {
 		int init=0;
 		boolean ended = false;
 		int end = clubs.size()-1;
-		Club toSearch = new Club("","", "", typePet);
+		Club toSearch = new Club("","", 0, typePet);
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Club mid = (Club)clubs.get(middle);
@@ -172,7 +178,7 @@ public class Controller {
 			
 			for(int i=init+1;i<clubs.size();i++) {
 				Club f =(Club)clubs.get(i);
-				if(f.compareByDate(less)<0) {
+				if(f.getId()<less.getId()) {
 					less=f;
 					lesser=i;
 				}
@@ -222,7 +228,7 @@ public class Controller {
 		}
 		
 		// binary search
-		public Owner searchOwnersId(String id) {
+		public Owner searchOwnersId(int id) {
 			orderByIdOwner();
 			int init=0;
 			boolean ended = false;
@@ -233,9 +239,9 @@ public class Controller {
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
-					if(mid.compareById(toSearch)==0) {
+					if(toSearch.getId()==mid.getId()) {
 						ended=true;
-					}else if(mid.compareById(toSearch)>0) {
+					}else if(toSearch.getId()<mid.getId()) {
 						end = middle-1;
 					}else {
 						end= middle+1;
@@ -252,7 +258,7 @@ public class Controller {
 			Owner toSearch = null;
 			for(int i=0;i<clubs.size();i++) {
 				int end = clubs.get(i).getOwners().size()-1;
-				toSearch = new Owner("","", BD, "");
+				toSearch = new Owner(0,"", BD, "");
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
@@ -275,7 +281,7 @@ public class Controller {
 			Owner toSearch = null;
 			for(int i=0;i<clubs.size();i++) {
 				int end = clubs.get(i).getOwners().size()-1;
-				toSearch = new Owner("","", "", TypePet);
+				toSearch = new Owner(0,"", "", TypePet);
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Owner mid = (Owner) clubs.get(i).getOwners().get(middle);
@@ -336,7 +342,7 @@ public class Controller {
 					
 					for(int i=init+1;i<clubs.get(h).getOwners().size();i++) {
 						Owner f =(Owner)clubs.get(h).getOwners().get(i);
-						if(f.compareById(less)<0) {
+						if(f.getId()<less.getId()) {
 							less=f;
 							lesser=i;
 						}
@@ -389,7 +395,7 @@ public class Controller {
 			return toPaint;
 		}
 		// binary search
-		public Pet searchPetId(String id) {
+		public Pet searchPetId(int id) {
 			orderByIdPets();
 			int init=0;
 			boolean ended = false;
@@ -400,9 +406,9 @@ public class Controller {
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
-					if(mid.compareById(toSearch)==0) {
+					if(toSearch.getId()==mid.getId()) {
 						ended=true;
-					}else if(mid.compareById(toSearch)>0) {
+					}else if(toSearch.getId()<mid.getId()) {
 						end = middle-1;
 					}else {
 						end= middle+1;
@@ -419,7 +425,7 @@ public class Controller {
 			Pet toSearch = null;
 			for(int i=0;i<clubs.size();i++) {
 				int end = clubs.get(i).getOwners().get(i).getPets().size()-1;
-				toSearch = new Pet("","", bd, "", "");
+				toSearch = new Pet(0,"", bd, "", "");
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
@@ -443,7 +449,7 @@ public class Controller {
 			Pet toSearch = null;
 			for(int i=0;i<clubs.size();i++) {
 				int end = clubs.get(i).getOwners().get(i).getPets().size()-1;
-				toSearch = new Pet("","", "", gender, "");
+				toSearch = new Pet(0,"", "", gender, "");
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
@@ -466,7 +472,7 @@ public class Controller {
 			Pet toSearch = null;
 			for(int i=0;i<clubs.size();i++) {
 				int end = clubs.get(i).getOwners().get(i).getPets().size()-1;
-				toSearch = new Pet("","", "", "", typeP);
+				toSearch = new Pet(0,"", "", "", typeP);
 				while(init<= end && !ended) {
 					int middle=(init+end)/2;
 					Pet mid = (Pet) clubs.get(i).getOwners().get(i).getPets().get(middle);
@@ -527,7 +533,7 @@ public class Controller {
 					
 					for(int i=init+1;i<clubs.get(h).getOwners().get(h).getPets().size();i++) {
 						Pet f =(Pet)clubs.get(h).getOwners().get(h).getPets().get(i);
-						if(f.compareById(less)<0) {
+						if(f.getId()<less.getId()) {
 							less=f;
 							lesser=i;
 						}

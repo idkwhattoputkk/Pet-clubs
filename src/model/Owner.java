@@ -6,16 +6,18 @@ import java.util.ArrayList;
 public class Owner implements Serializable {
 	
 	//attributes
-	private String id, fullName, birthdate, typePet;
+	private int id;
+	private String fullName, birthdate, typePet;
 	private ArrayList<Pet> pets;
 	
 	//methods
-	public Owner(String id, String fullName, String birthdate, String typePet) {
+	public Owner(int id, String fullName, String birthdate, String typePet) {
 		super();
 		this.id = id;
 		this.fullName = fullName;
 		this.birthdate = birthdate;
 		this.typePet = typePet;
+		pets = new ArrayList<>();
 	}
 	public int compareByName(Owner o) {
 		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
@@ -40,17 +42,6 @@ public class Owner implements Serializable {
 		}
 		return valueToComparate;
 	}
-	public int compareById(Owner o) {
-		int valueToComparate = id.compareToIgnoreCase(o.id);
-		if (valueToComparate < 0) {
-			valueToComparate = -1;
-		} else if (valueToComparate == 0) {
-			valueToComparate = 0;
-		} else {
-			valueToComparate = 1;
-		}
-		return valueToComparate;
-	}
 	public int compareByTypePet(Owner o) {
 		int valueToComparate = typePet.compareToIgnoreCase(o.typePet);
 		if (valueToComparate < 0) {
@@ -62,11 +53,11 @@ public class Owner implements Serializable {
 		}
 		return valueToComparate;
 	}
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
