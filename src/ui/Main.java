@@ -11,7 +11,7 @@ import model.Controller;
 
 
 public class Main {
-	private static final String PATH="/Users/emanuelumana/eclipse-workspace/Pet-clubs/data/MOCK_DATA.csv";
+	private static final String PATH="/data/MOCK_DATA.csv";
 	private Controller control;
 	private BufferedReader br;
 
