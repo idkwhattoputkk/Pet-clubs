@@ -10,9 +10,6 @@ import java.util.ArrayList;
 
 public class Controller {
 	//attributes
-	public final static String CLUB_PATH="./data" + File.separator + "club.txt";
-	public final static String OWNER_PATH="./data" + File.separator + "owner.txt";
-	public final static String PET_PATH="./data" + File.separator + "pets.txt";
 	private ArrayList<Club> clubs;
 	
 	
@@ -25,35 +22,54 @@ public class Controller {
 	}
 	public Controller() {
 		clubs = new ArrayList<>();
+	}
+	
+	public void savePets() {
+		File data = new File("data");
+		if(!data.exists())
+			data.mkdir();
+		File file = new File("data"+File.separator+"pets.txt");
+		
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			for(int i=0;i<clubs.size();i++) {
+				oos.writeObject(clubs.get(i).getOwners().get(i).getPets().toString());
+				oos.close();
+			}
+		} catch (IOException e) {
 		}
-	public void saveAll() throws FileNotFoundException, IOException {
-		saveOwners(OWNER_PATH);
-		saveClubs(CLUB_PATH);
-		savePets(PET_PATH);
+				
 	}
-	private void savePets(String h) throws FileNotFoundException, IOException {
-		File file = new File(h);
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-		for(int i=0;i<clubs.size();i++) {
-			oos.writeObject(clubs.get(i).getOwners().get(i).getPets().toString());
-			oos.close();
-		}		
-	}
-	private void saveOwners(String h) throws FileNotFoundException, IOException{
-		File file = new File(h);
-		ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-		for(int i=0;i<clubs.size();i++) {
-			oos.writeObject(clubs.get(i).getOwners().toString());
-			oos.close();
-		}		
-	}
-	public void saveClubs(String info) throws FileNotFoundException {
-		File f= new File(info);
-		PrintWriter pr = new PrintWriter(f);
-		for(Club c: clubs) {
-			pr.println(c.toString());
+	public void saveOwners(){
+		File data = new File("data");
+		if(!data.exists())
+			data.mkdir();
+		
+		File file = new File("data"+File.separator+"owners.txt");
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			for(int i=0;i<clubs.size();i++) {
+				oos.writeObject(clubs.get(i).getOwners().toString());
+				oos.close();
+			}
+		} catch (IOException e) {
 		}
-		pr.close();
+				
+	}
+	public void saveClubs() {
+		File data = new File("data");
+		if(!data.exists())
+			data.mkdir();
+		
+		File f= new File("data"+File.separator+"clubs.txt");
+		try {
+			PrintWriter pr = new PrintWriter(f);
+			clubs.forEach((c)-> pr.write(c.toString()));
+			pr.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	

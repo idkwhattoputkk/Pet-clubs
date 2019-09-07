@@ -62,8 +62,25 @@ public class Main {
 				}
 				break;
 			case 3:
+				try {
+					System.out.println("Digite el codigo el club para registrar el duenio");
+					int i1=Integer.parseInt(br.readLine());
+					System.out.println("por favor digite el nombre");
+					String n = br.readLine();
+					System.out.println("por favor digite el id");
+					int id = Integer.parseInt(br.readLine());
+					System.out.println("por favor digite la fecha de nacimiento");
+					String d = br.readLine();
+					System.out.println("por favor digite tipo de mascota");
+					String t = br.readLine();
+					Owner o = new Owner(id, n, d, t);
+					control.searchClubsId(i1).getOwners().add(o);
+				}catch(NumberFormatException | IOException | NullPointerException e) {
+				System.out.println(e.getMessage());
+			}
 				break;
 			case 4:
+					control.saveClubs();
 				break;
 			case 5:
 				break;
@@ -103,6 +120,8 @@ public class Main {
 			case 11:
 				break;
 			case 12:
+				control.orderByIdClubs();
+				control.getClubs().forEach(System.out::println);
 				break;
 			case 13:
 				break;
@@ -169,8 +188,6 @@ public class Main {
 		System.out.println("21. ordenar mascotas por genero");
 		System.out.println("22. ordenar mascotas por tipo de mascota");
 		System.out.println("23. ordenar mascotas por fecha");
-		
-		
 		System.out.println("24. Salir ");
 
 		int valor=0;
