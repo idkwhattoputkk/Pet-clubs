@@ -73,7 +73,9 @@ public class Main {
 				break;
 			case 12:
 				control.orderByIdClubs();
-				control.getClubs().forEach(System.out::println);
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					System.out.println(control.getClubs().get(i).toString());
+				}
 				break;
 			case 13:
 				break;
