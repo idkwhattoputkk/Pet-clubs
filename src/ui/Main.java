@@ -47,7 +47,6 @@ public class Main {
 				try {
 					System.out.println("Digite el codigo el club para registrar el duenio");
 					int i1=Integer.parseInt(br.readLine());
-					control.searchClubsId(i1);
 					System.out.println("por favor digite el nombre");
 					String n = br.readLine();
 					System.out.println("por favor digite el id");
@@ -64,8 +63,56 @@ public class Main {
 				break;
 			case 3:
 				break;
-				
-				
+			case 4:
+				break;
+			case 5:
+				break;
+			case 6:
+				break;
+			case 7:
+				System.out.println("digite la identificacion del club a eliminar");
+				try {
+					int id = Integer.parseInt(br.readLine());
+					control.getClubs().remove(control.searchClubsId(id));
+				}catch(NumberFormatException | IOException e) {
+					System.out.println(e.getMessage());
+				}
+				break;
+			case 8:
+				break;
+			case 9:
+				break;
+			case 10:
+				break;
+			case 11:
+				break;
+			case 12:
+				break;
+			case 13:
+				break;
+			case 14:
+				break;
+			case 15:
+				break;
+			case 16:
+				break;
+			case 17:
+				break;
+			case 18:
+				break;
+			case 19:
+				break;
+			case 20:
+				break;
+			case 21:
+				break;
+			case 22:
+				break;
+			case 23:
+				break;
+			case 24:
+				out =true;
+				break;
 			}
 		}
 		
@@ -84,23 +131,37 @@ public class Main {
 	}
 	public int appMenu(){
 		System.out.println("Que deseas hacer ?");
-		System.out.println("1. Aniadir un club?");
-		System.out.println("2. Aniadir un duenio ");
+		System.out.println("1. aniadir un club?");
+		System.out.println("2. aniadir un duenio ");
 		System.out.println("3. aniadir una mascota ");
-		System.out.println("4. eliminar un club");
-		System.out.println("5. eliminar un duenio");
-		System.out.println("6. eliminar un club");
-		System.out.println("7. ordenar club por fecha de creacion");
-		System.out.println("7. ordenar club por nombre");
-		System.out.println("9. ordenar club por id");
-		System.out.println("10. ordenar club por tipo de mascota");
-		System.out.println("x. Salir ");
+		System.out.println("4. guardar clubes");
+		System.out.println("5. guardar duenios");
+		System.out.println("6. guardar mascotas");
+		System.out.println("7. eliminar un club");
+		System.out.println("8. eliminar un duenio");
+		System.out.println("9. eliminar un club");
+		System.out.println("10. ordenar club por fecha de creacion");
+		System.out.println("11. ordenar club por nombre");
+		System.out.println("12. ordenar club por id");
+		System.out.println("13. ordenar club por tipo de mascota");
+		System.out.println("14. ordenar duenios por nombre");
+		System.out.println("15. ordenar duenios por id");
+		System.out.println("17. ordenar duenios por fecha de nacimiento");
+		System.out.println("18. ordenar duenios por tipo de mascota");
+		System.out.println("19. ordenar mascotas por nombre");
+		System.out.println("20. ordenar mascotas por id");
+		System.out.println("21. ordenar mascotas por genero");
+		System.out.println("22. ordenar mascotas por tipo de mascota");
+		System.out.println("23. ordenar mascotas por fecha");
+		
+		
+		System.out.println("24. Salir ");
 
 		int valor=0;
 		try {
 			valor = Integer.parseInt(br.readLine());
 		} catch (NumberFormatException | IOException e) {
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		return valor;		
 	}
