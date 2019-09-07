@@ -27,7 +27,22 @@ public class Controller {
 	public Controller() {
 		clubs = new ArrayList<>();
 	}
-	
+	public String addClub(String n, String d, int id, String t) {
+		String msg="";
+		Club c = new Club(n, d, id, t);
+		clubs.add(c);
+		msg+="el club "+c.toString()+" se anadio corretcamente";
+		return msg;
+	}
+	public String addOwner(int ide, int id, String fullName, String birthdate, String typePet){
+		String msg="el duenio se anadio correctamente";
+		try {
+			searchById(ide).addOwner(id, fullName, birthdate, typePet);;
+		}catch(OwnerRepeatedException e){
+			msg=e.getMessage();
+		}
+		return msg;
+	}
 	public void savePets() {
 		File data = new File("data");
 		if(!data.exists())
@@ -111,7 +126,7 @@ public class Controller {
 		return toSearch;
 	}
 	// binary search
-	public Club searchByIdClubs(int id) {
+	public Club searchById(int id) {
 		orderByIdClubs();
 		int init=0;
 		boolean ended = false;
@@ -216,6 +231,12 @@ public class Controller {
 				}
 			}
 		}
+	}
+	public String removeClub(int ido) {
+		String msg="";
+		clubs.remove(searchById(ido));
+		msg+="el club "+searchById(ido).toString()+" ha sido eliminado";
+		return msg;	
 	}	
 }
 		

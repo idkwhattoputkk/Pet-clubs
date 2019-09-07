@@ -31,10 +31,22 @@ public class Main {
 				String d = reader.nextLine();
 				System.out.println("por favor digite tipo de mascota");
 				String t = reader.nextLine();
-				Club e = new Club(n, d, id, t);
-				control.getClubs().add(e);
+				String msg =control.addClub(n, d, id, t);
+				System.out.println(msg);
 				break;
 			case 2:
+				System.out.println("por favor digite el id del club");
+				int aidi = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite el nombre");
+				String na = reader.nextLine();
+				System.out.println("por favor digite el id");
+				int ide = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite la fecha de nacimiento");
+				String da = reader.nextLine();
+				System.out.println("por favor digite tipo de mascota");
+				String ti = reader.nextLine();
+				String msj = control.addOwner(aidi, ide, na, da, ti);
+				System.out.println(msj);
 				break;
 			case 3:
 				
@@ -49,6 +61,7 @@ public class Main {
 			case 7:
 				System.out.println("digite la identificacion del club a eliminar");
 				int ido = Integer.parseInt(reader.nextLine());
+				control.removeClub(ido);
 				break;
 			case 8:
 				break;
@@ -104,7 +117,7 @@ public class Main {
 	}
 	public int appMenu(){
 		System.out.println("Que deseas hacer ?");
-		System.out.println("1. aniadir un club?");
+		System.out.println("1. aniadir un club");
 		System.out.println("2. aniadir un duenio ");
 		System.out.println("3. aniadir una mascota ");
 		System.out.println("4. guardar clubes");

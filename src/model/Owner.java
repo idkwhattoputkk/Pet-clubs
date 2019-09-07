@@ -35,7 +35,10 @@ public class Owner implements Serializable {
 			}catch (IOException e) {
 				e.printStackTrace();
 		}
-				
+	}
+	public String addPet(int id, String name, String birthdate, String gender, String typePet) {
+		String msg="";
+		return msg;
 	}
 	// *********************************************************************
 	// *********************************************************************

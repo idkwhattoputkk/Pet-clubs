@@ -40,7 +40,15 @@ public class Club {
 		for (int i = 0; i < owners.size(); i++) {
 			owners.get(i).savePets(h);
 		}
-	}	
+	}
+	public void addOwner(int id, String fullName, String birthdate, String typePet) throws OwnerRepeatedException{
+		Owner o = new Owner(id, fullName, birthdate, typePet);
+		for (Owner owner : owners) {
+			if(o.getId()==owner.getId()) {
+				throw new OwnerRepeatedException("ya existe un duenio con ese id"+owner.toString());
+			}
+		}
+	}
 	// *********************************************************************
 	// *********************************************************************
 	//
