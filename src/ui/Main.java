@@ -70,8 +70,8 @@ public class Main {
 			case 6:
 				break;
 			case 7:
-				System.out.println("digite la identificacion del club a eliminar");
 				try {
+					System.out.println("digite la identificacion del club a eliminar");
 					int id = Integer.parseInt(br.readLine());
 					control.getClubs().remove(control.searchClubsId(id));
 				}catch(NumberFormatException | IOException e) {
@@ -79,6 +79,22 @@ public class Main {
 				}
 				break;
 			case 8:
+				try {
+					System.out.println("digite la identificacion del club ");
+					int id = Integer.parseInt(br.readLine());
+					System.out.println("digite la identificacion del duenio a eliminar");
+					int id2 = Integer.parseInt(br.readLine());
+					boolean end = false;
+					for (int index=0;index<control.getClubs().size();index++) {
+						Owner o= control.searchOwnersId(id2);
+						if(control.getClubs().get(index).getOwners().equals(o)&&end==false) {
+							control.getClubs().get(index).getOwners().remove(o);
+							end = true;
+						}	
+					}
+				}catch(NumberFormatException | IOException e) {
+					System.out.println(e.getMessage());
+				}
 				break;
 			case 9:
 				break;
