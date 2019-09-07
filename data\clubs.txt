@@ -1,6 +1,0 @@
-id: 1, nombre: 1, fecha creacion: 1, tipo de mascota: 1
-id: 2, nombre: 1, fecha creacion: 2, tipo de mascota: 2
-id: 6, nombre: 6, fecha creacion: 6, tipo de mascota: 6
-id: 5, nombre: 5, fecha creacion: 55, tipo de mascota: 5
-id: 33, nombre: 3, fecha creacion: 3, tipo de mascota: 1
-id: 11, nombre: 1, fecha creacion: 11, tipo de mascota: 11
