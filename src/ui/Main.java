@@ -1,21 +1,16 @@
 package ui;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 import model.*;
 
 
 public class Main {
-	private static final String PATH="/data/MOCK_DATA.csv";
 	private Controller control;
-	private BufferedReader br;
+	private Scanner reader;
 
 	public Main() {
-		br = new BufferedReader(new InputStreamReader(System.in));
+		reader = new Scanner(System.in);
 		showWelcoming();
 		control = new Controller();
 		appManagement();
@@ -28,56 +23,21 @@ public class Main {
 			int valorUsuario = appMenu();
 			switch(valorUsuario) {
 			case 1:
-				try {
-					System.out.println("por favor digite el nombre");
-					String n = br.readLine();
-					System.out.println("por favor digite el id");
-					int id = Integer.parseInt(br.readLine());
-					System.out.println("por favor digite la fecha de creacion");
-					String d = br.readLine();
-					System.out.println("por favor digite tipo de mascota");
-					String t = br.readLine();
-					Club e = new Club(n, d, id, t);
-					control.getClubs().add(e);
-				} catch (NumberFormatException | IOException e) {
-					System.out.println(e.getMessage());
-				}
+				System.out.println("por favor digite el nombre");
+				String n = reader.nextLine();
+				System.out.println("por favor digite el id");
+				int id = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite la fecha de creacion");
+				String d = reader.nextLine();
+				System.out.println("por favor digite tipo de mascota");
+				String t = reader.nextLine();
+				Club e = new Club(n, d, id, t);
+				control.getClubs().add(e);
 				break;
 			case 2:
-				try {
-					System.out.println("Digite el codigo el club para registrar el duenio");
-					int i1=Integer.parseInt(br.readLine());
-					System.out.println("por favor digite el nombre");
-					String n = br.readLine();
-					System.out.println("por favor digite el id");
-					int id = Integer.parseInt(br.readLine());
-					System.out.println("por favor digite la fecha de nacimiento");
-					String d = br.readLine();
-					System.out.println("por favor digite tipo de mascota");
-					String t = br.readLine();
-					Owner o = new Owner(id, n, d, t);
-					control.searchClubsId(i1).getOwners().add(o);
-				}catch(NumberFormatException | IOException | NullPointerException e) {
-					System.out.println(e.getMessage());
-				}
 				break;
 			case 3:
-				try {
-					System.out.println("Digite el codigo el club para registrar el duenio");
-					int i1=Integer.parseInt(br.readLine());
-					System.out.println("por favor digite el nombre");
-					String n = br.readLine();
-					System.out.println("por favor digite el id");
-					int id = Integer.parseInt(br.readLine());
-					System.out.println("por favor digite la fecha de nacimiento");
-					String d = br.readLine();
-					System.out.println("por favor digite tipo de mascota");
-					String t = br.readLine();
-					Owner o = new Owner(id, n, d, t);
-					control.searchClubsId(i1).getOwners().add(o);
-				}catch(NumberFormatException | IOException | NullPointerException e) {
-				System.out.println(e.getMessage());
-			}
+				
 				break;
 			case 4:
 					control.saveClubs();
@@ -87,31 +47,10 @@ public class Main {
 			case 6:
 				break;
 			case 7:
-				try {
-					System.out.println("digite la identificacion del club a eliminar");
-					int id = Integer.parseInt(br.readLine());
-					control.getClubs().remove(control.searchClubsId(id));
-				}catch(NumberFormatException | IOException e) {
-					System.out.println(e.getMessage());
-				}
+				System.out.println("digite la identificacion del club a eliminar");
+				int ido = Integer.parseInt(reader.nextLine());
 				break;
 			case 8:
-				try {
-					System.out.println("digite la identificacion del club ");
-					int id = Integer.parseInt(br.readLine());
-					System.out.println("digite la identificacion del duenio a eliminar");
-					int id2 = Integer.parseInt(br.readLine());
-					boolean end = false;
-					for (int index=0;index<control.getClubs().size();index++) {
-						Owner o= control.searchOwnersId(id2);
-						if(control.getClubs().get(index).getOwners().equals(o)&&end==false) {
-							control.getClubs().get(index).getOwners().remove(o);
-							end = true;
-						}	
-					}
-				}catch(NumberFormatException | IOException e) {
-					System.out.println(e.getMessage());
-				}
 				break;
 			case 9:
 				break;
@@ -150,7 +89,6 @@ public class Main {
 				break;
 			}
 		}
-		
 	}
 	public void showWelcoming() {
 
@@ -191,11 +129,7 @@ public class Main {
 		System.out.println("24. Salir ");
 
 		int valor=0;
-		try {
-			valor = Integer.parseInt(br.readLine());
-		} catch (NumberFormatException | IOException e) {
-			System.out.println(e.getMessage());
-		}
+			valor = Integer.parseInt(reader.nextLine());
 		return valor;		
 	}
 	public static void main(String[] args) {

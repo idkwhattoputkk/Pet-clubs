@@ -104,7 +104,7 @@ public class Pet implements Serializable{
 	} 
 	@Override
 	public String toString() {
-		return "nombre: "+name+", fecha de nacimiento: "+birthdate+", genero: "+gender+", tipo de mascota: "+typePet;
+		return name+", "+birthdate+", "+gender+","+typePet;
 		
 	}
 

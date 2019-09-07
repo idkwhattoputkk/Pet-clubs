@@ -1,7 +1,12 @@
 package model;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 @SuppressWarnings("serial")
 public class Owner implements Serializable {
 	
@@ -18,6 +23,166 @@ public class Owner implements Serializable {
 		this.birthdate = birthdate;
 		this.typePet = typePet;
 		pets = new ArrayList<>();
+	}
+	public void savePets(String h){		
+		File file = new File(h);
+		try {
+			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+			for (Pet pet : pets) {
+				oos.writeObject(pet);
+			}
+			oos.close();
+			}catch (IOException e) {
+				e.printStackTrace();
+		}
+				
+	}
+	// *********************************************************************
+	// *********************************************************************
+	//
+	// ordering the Pets array list and creating the search methods.
+	//
+	// *********************************************************************
+	// *********************************************************************
+
+	// sequential search
+	public Pet searchByName(String name) {
+		boolean ended=false;
+		Pet toPaint=null;
+		for(int i=0;i<pets.size() && !ended;i++) {
+			if(pets.get(i).getName().equalsIgnoreCase(name)) {
+				ended=true;
+				toPaint =(Pet) pets.get(i);
+				}
+		}
+		return toPaint;
+	}
+	// binary search
+	public Pet searchByDate(String date) {
+		orderByDate();
+		int init=0;
+		boolean ended = false;
+		int end = pets.size()-1;
+		Pet toSearch = new Pet(0,"", date, "","");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Pet mid = (Pet)pets.get(middle);
+			if(mid.compareByDate(toSearch)>0) {
+				ended=true;
+			}else if(mid.compareByDate(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+	// binary search
+	public Pet searchById(int id) {
+		orderById();
+		int init=0;
+		boolean ended = false;
+		int end = pets.size()-1;
+		Pet toSearch = new Pet(id,"", "", "", "");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Pet mid = (Pet)pets.get(middle);
+			if(toSearch.getId()==mid.getId()) {
+				ended=true;
+			}else if(toSearch.getId()<mid.getId()) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+	// binary search
+	public Pet searchByTypeOfPet(String tp) {
+		orderById();
+		int init=0;
+		boolean ended = false;
+		int end = pets.size()-1;
+		Pet toSearch = new Pet(0,"", "", "", tp);
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Pet mid = (Pet)pets.get(middle);
+			if(mid.compareByTypePet(toSearch)>0) {
+				ended=true;
+			}else if(mid.compareByTypePet(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+		
+	//insertion
+	public void orderByDate() {
+		for(int i=1;i<pets.size();i++) {
+			Pet toIterate = (Pet) pets.get(i);
+			boolean finished =false;
+			
+			for(int j=i;j>0 && !finished;j--) {
+				Pet fromNow=(Pet) pets.get(j-1);
+				if(fromNow.compareByDate(toIterate)>0) {
+					pets.set(j, fromNow);
+					pets.set(j-1, toIterate);
+				}else {
+					finished=true;
+				}
+			}
+		}
+	}
+	//selection
+	public void orderById() {
+		int init;
+		for(init=0;init<pets.size();init++) {
+			int lesser=init;
+			Pet less = (Pet)pets.get(init);
+			
+			for(int i=init+1;i<pets.size();i++) {
+				Pet f =(Pet)pets.get(i);
+				if(f.getId()<less.getId()) {
+					less=f;
+					lesser=i;
+				}
+			}
+			if(lesser!=init) {
+				Pet temp = (Pet)pets.get(init);
+				pets.set(init, less);
+				pets.set(lesser, temp);
+			}
+		}
+	}
+	// bubble
+	public void orderByTypePet() {
+		for (int i = pets.size(); i > 0; i--) {
+			for (int j = 0; j < i - 1; j++) {
+				Pet c1 = (Pet) pets.get(j);
+				Pet c2 = (Pet) pets.get(j + 1);
+
+				if (c1.compareByTypePet(c2) > 0) {
+					pets.set(j, c2);
+					pets.set(j + 1, c1);
+				}
+			}
+		}
+	}
+	// bubble
+	public void orderByNamepets() {
+		for (int i = pets.size(); i > 0; i--) {
+			for (int j = 0; j < i - 1; j++) {
+				Pet c1 = (Pet) pets.get(j);
+				Pet c2 = (Pet) pets.get(j + 1);
+
+				if (c1.compareByName(c2) > 0) {
+					pets.set(j, c2);
+					pets.set(j + 1, c1);
+				}
+			}
+		}
 	}
 	public int compareByName(Owner o) {
 		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
@@ -94,7 +259,7 @@ public class Owner implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "id: "+id +", nombre: "+ fullName+", fecha de nacimiento: "+birthdate+", tipo de mascota: "+typePet;
+		return id +","+ fullName+","+birthdate+","+typePet;
 				
 	}
 	
