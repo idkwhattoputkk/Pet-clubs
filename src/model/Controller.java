@@ -34,11 +34,22 @@ public class Controller {
 		msg+="el club "+c.toString()+" se anadio corretcamente";
 		return msg;
 	}
+	//adding a new owner
 	public String addOwner(int ide, int id, String fullName, String birthdate, String typePet){
 		String msg="el duenio se anadio correctamente";
 		try {
 			searchById(ide).addOwner(id, fullName, birthdate, typePet);;
 		}catch(OwnerRepeatedException e){
+			msg=e.getMessage();
+		}
+		return msg;
+	}
+	//adding a new pet
+	public String addPet(int idC,int idO,int id, String name, String birthdate, String gender, String typePet) {
+		String msg="la mascota se anadio con exito";
+		try {
+			searchById(idC).searchById(idO).addPet(id, name, birthdate, gender, typePet);
+		}catch(PetRepeatedException e) {
 			msg=e.getMessage();
 		}
 		return msg;
@@ -70,18 +81,78 @@ public class Controller {
 		File f= new File(CLUBS_PATH);
 		try {
 			PrintWriter pr = new PrintWriter(f);
-			clubs.forEach((c)-> pr.write(c.toString()));
+			clubs.forEach((c)-> pr.write(c.toString()+"\n"));
 			pr.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
 	}
-	// sequential search
 	public String searchByNameOwner(String name) {
 		String s= "";
 		for (int i = 0; i < clubs.size(); i++) {
 			s+=clubs.get(i).searchByName(name).toString();
+		}
+		return s;
+	}
+	public String searchByIdOwner(int id) {
+		String msg="";
+		for (int i = 0; i < clubs.size(); i++) {
+			msg+=clubs.get(i).searchById(id).toString();
+		}
+		return msg;
+	}
+	public String searchByDateOwner(String date) {
+		String msg="";
+		for (int i = 0; i < clubs.size(); i++) {
+			msg+=clubs.get(i).searchByDate(date).toString();
+		}
+		return msg;
+	}
+	public String searchByTypePetOwner(String tp) {
+		String msg="";
+		for (int i = 0; i < clubs.size(); i++) {
+			msg+=clubs.get(i).searchByTypeOfPet(tp);
+		}
+		return msg;
+	}
+	public String searchByNamePet(String name) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < clubs.size()&&!flag; i++) {
+			s+=clubs.get(i).searchByNamePet(name);
+			flag=true;
+		}
+		return s;
+	}
+	public String searchByIdPet(int id) {
+		String s= "";
+		for (int i = 0; i < clubs.size(); i++) {
+			s+=clubs.get(i).searchByIdPet(id).toString();
+		}
+		return s;
+	}
+	public String searchByDatePet(String d) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < clubs.size()&&!flag; i++) {
+			s+=clubs.get(i).searchByDatePet(d).toString();
+		}
+		return s;
+	}
+	public String searchBytypePet(String d) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < clubs.size()&&!flag; i++) {
+			s+=clubs.get(i).searchByTypeOfPet(d).toString();
+		}
+		return s;
+	}
+	public String searchByGenderPet(String g) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < clubs.size()&&!flag; i++) {
+			s+=clubs.get(i).searchByGenderPet(g).toString();
 		}
 		return s;
 	}
@@ -232,11 +303,17 @@ public class Controller {
 			}
 		}
 	}
-	public String removeClub(int ido) {
+	public String removeClubById(int ido) {
 		String msg="";
 		clubs.remove(searchById(ido));
-		msg+="el club "+searchById(ido).toString()+" ha sido eliminado";
+		msg+="el club ha sido eliminado";
 		return msg;	
-	}	
+	}
+	public String removeClubByName(String n) {
+		String msg="";
+		clubs.remove(searchByName(n));
+		msg+="el club ha sido eliminado";
+		return msg;	
+	}
 }
 		

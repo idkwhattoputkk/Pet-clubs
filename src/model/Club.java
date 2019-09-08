@@ -43,9 +43,11 @@ public class Club {
 	}
 	public void addOwner(int id, String fullName, String birthdate, String typePet) throws OwnerRepeatedException{
 		Owner o = new Owner(id, fullName, birthdate, typePet);
-		for (Owner owner : owners) {
-			if(o.getId()==owner.getId()) {
-				throw new OwnerRepeatedException("ya existe un duenio con ese id"+owner.toString());
+		for (int i = 0; i < owners.size(); i++) {
+			if(owners.get(i).getId()==id) {
+				throw new OwnerRepeatedException("ya existe un duenio con ese id"+owners.get(i).toString());
+			}else {
+				owners.add(o);
 			}
 		}
 	}
@@ -129,7 +131,46 @@ public class Club {
 		}
 		return toSearch;
 	}
-		
+	public String searchByNamePet(String name) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < owners.size()&&!flag; i++) {
+			s+=owners.get(i).searchByName(name);
+			flag=true;
+		}
+		return s;
+	}
+	public String searchByIdPet(int id) {
+		String s= "";
+		for (int i = 0; i < owners.size(); i++) {
+			s+=owners.get(i).searchById(id).toString();
+		}
+		return s;
+	}
+	public String searchByDatePet(String d) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < owners.size()&&!flag; i++) {
+			s+=owners.get(i).searchByDate(d).toString();
+		}
+		return s;
+	}
+	public String searchBytypePet(String d) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < owners.size()&&!flag; i++) {
+			s+=owners.get(i).searchByTypeOfPet(d).toString();
+		}
+		return s;
+	}
+	public String searchByGenderPet(String g) {
+		String s= "";
+		boolean flag =false;
+		for (int i = 0; i < owners.size()&&!flag; i++) {
+			s+=owners.get(i).searchByGender(g).toString();
+		}
+		return s;
+	}
 	//insertion
 	public void orderByDate() {
 		for(int i=1;i<owners.size();i++) {
@@ -195,6 +236,18 @@ public class Club {
 				}
 			}
 		}
+	}
+	public String removeOwnerById(int ido) {
+		String msg="";
+		owners.remove(searchById(ido));
+		msg+="el duenio ha sido eliminado";
+		return msg;	
+	}
+	public String removeOwnerByName(String n) {
+		String msg="";
+		owners.remove(searchByName(n));
+		msg+="el duenio ha sido eliminado";
+		return msg;	
 	}
 	public int compareByName(Club c) {
 		int valueToComparate = name.compareToIgnoreCase(c.name);

@@ -36,8 +36,16 @@ public class Owner implements Serializable {
 				e.printStackTrace();
 		}
 	}
-	public String addPet(int id, String name, String birthdate, String gender, String typePet) {
+	public String addPet(int id, String name, String birthdate, String gender, String typePet) throws PetRepeatedException {
 		String msg="";
+		for (int i = 0; i < pets.size(); i++) {
+			if(pets.get(i).getName().equalsIgnoreCase(name)) {
+				throw new PetRepeatedException("ya tiene una mascota con el mismo nombre "+ pets.get(i).toString());
+			}else {
+				Pet p = new Pet(id,name, birthdate, gender, typePet);
+				pets.add(p);
+			}
+		}
 		return msg;
 	}
 	// *********************************************************************
@@ -113,6 +121,25 @@ public class Owner implements Serializable {
 			if(mid.compareByTypePet(toSearch)>0) {
 				ended=true;
 			}else if(mid.compareByTypePet(toSearch)>0) {
+				end = middle-1;
+			}else {
+				end= middle+1;
+			}
+		}
+		return toSearch;
+	}
+	public Pet searchByGender(String g) {
+		orderById();
+		int init=0;
+		boolean ended = false;
+		int end = pets.size()-1;
+		Pet toSearch = new Pet(0,"", "", g, "");
+		while(init<= end && !ended) {
+			int middle=(init+end)/2;
+			Pet mid = (Pet)pets.get(middle);
+			if(mid.compareByGender(toSearch)>0) {
+				ended=true;
+			}else if(mid.compareByGender(toSearch)>0) {
 				end = middle-1;
 			}else {
 				end= middle+1;

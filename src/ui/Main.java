@@ -20,7 +20,7 @@ public class Main {
 
 		while (!out) {
 			
-			int valorUsuario = appMenu();
+			int valorUsuario = appMenuPrincipal();
 			switch(valorUsuario) {
 			case 1:
 				System.out.println("por favor digite el nombre");
@@ -52,18 +52,25 @@ public class Main {
 				
 				break;
 			case 4:
-					control.saveClubs();
+				control.saveClubs();
 				break;
 			case 5:
+				control.saveOwners();
 				break;
 			case 6:
+				control.savePets();
 				break;
 			case 7:
 				System.out.println("digite la identificacion del club a eliminar");
 				int ido = Integer.parseInt(reader.nextLine());
-				control.removeClub(ido);
+				control.removeClubById(ido);
 				break;
 			case 8:
+				System.out.println("digite la identificacion del club al que pertenece el duenio");
+				int toRemove = Integer.parseInt(reader.nextLine());
+				System.out.println("digite la identificacion del duenio");
+				int o = Integer.parseInt(reader.nextLine());
+				control.searchById(toRemove).removeOwnerById(o);
 				break;
 			case 9:
 				break;
@@ -117,7 +124,8 @@ public class Main {
 		mensaje += "******************************************************************\n";
 		System.out.println(mensaje);
 	}
-	public int appMenu(){
+	public int appMenuPrincipal(){
+		int valor=0;
 		System.out.println("Que deseas hacer ?");
 		System.out.println("1. aniadir un club");
 		System.out.println("2. aniadir un duenio ");
@@ -142,9 +150,7 @@ public class Main {
 		System.out.println("22. ordenar mascotas por tipo de mascota");
 		System.out.println("23. ordenar mascotas por fecha");
 		System.out.println("24. Salir ");
-
-		int valor=0;
-			valor = Integer.parseInt(reader.nextLine());
+		valor = Integer.parseInt(reader.nextLine());
 		return valor;		
 	}
 	public static void main(String[] args) {
