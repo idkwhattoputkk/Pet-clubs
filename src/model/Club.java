@@ -224,7 +224,7 @@ public class Club {
 		}
 	}
 	// bubble
-	public void orderByNameowners() {
+	public void orderByNameOwners() {
 		for (int i = owners.size(); i > 0; i--) {
 			for (int j = 0; j < i - 1; j++) {
 				Owner c1 = (Owner) owners.get(j);

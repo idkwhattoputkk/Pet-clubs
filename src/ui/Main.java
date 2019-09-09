@@ -49,7 +49,22 @@ public class Main {
 				System.out.println(msj);
 				break;
 			case 3:
-				
+				System.out.println("por favor digite el id del club");
+				int aidi1 = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite el id del duenio");
+				int aidi11 = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite el nombre");
+				String na1 = reader.nextLine();
+				System.out.println("por favor digite el id");
+				int ide1 = Integer.parseInt(reader.nextLine());
+				System.out.println("por favor digite la fecha de nacimiento");
+				String da1 = reader.nextLine();
+				System.out.println("por favor digite tipo de mascota");
+				String ti1 = reader.nextLine();
+				System.out.println("por favor digite el genero de la mascota");
+				String gender = reader.nextLine();
+				String msj1 = control.addPet(aidi1, aidi11, ide1, na1, da1, gender, ti1);
+				System.out.println(msj1);
 				break;
 			case 4:
 				control.saveClubs();
@@ -63,48 +78,150 @@ public class Main {
 			case 7:
 				System.out.println("digite la identificacion del club a eliminar");
 				int ido = Integer.parseInt(reader.nextLine());
-				control.removeClubById(ido);
+				String msgj= control.removeClubById(ido);
+				System.out.println(msgj);
 				break;
 			case 8:
 				System.out.println("digite la identificacion del club al que pertenece el duenio");
 				int toRemove = Integer.parseInt(reader.nextLine());
 				System.out.println("digite la identificacion del duenio");
 				int o = Integer.parseInt(reader.nextLine());
-				control.searchById(toRemove).removeOwnerById(o);
+				String msgg = control.searchById(toRemove).removeOwnerById(o);
+				System.out.println(msgg);
 				break;
 			case 9:
+				System.out.println("digite la identificacion del club al que pertenece el duenio");
+				int toRemove1 = Integer.parseInt(reader.nextLine());
+				System.out.println("digite la identificacion del duenio");
+				int o1 = Integer.parseInt(reader.nextLine());
+				System.out.println("digite la identificacion de la mascota");
+				int mascot = Integer.parseInt(reader.nextLine());
+				String petmsg= control.searchById(toRemove1).searchById(toRemove1).removePetById(mascot);
+				System.out.println(petmsg);
 				break;
 			case 10:
+				long t1=System.currentTimeMillis();
+				control.orderByDateClubs();
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					System.out.println(control.getClubs().get(i).toString());
+				}
+				long tf=System.currentTimeMillis();
+				System.out.println(tf-t1);
 				break;
 			case 11:
+				long t2=System.currentTimeMillis();
+				control.orderByNameClubs();
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					System.out.println(control.getClubs().get(i).toString());
+				}
+				long tf2=System.currentTimeMillis();
+				System.out.println(tf2-t2);
 				break;
 			case 12:
+				long t3=System.currentTimeMillis();
 				control.orderByIdClubs();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					System.out.println(control.getClubs().get(i).toString());
 				}
+				long tf3=System.currentTimeMillis();
+				System.out.println(tf3-t3);
 				break;
 			case 13:
+				long t4=System.currentTimeMillis();
+				control.orderByTypePetClubs();
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					System.out.println(control.getClubs().get(i).toString());
+				}
+				long tf4=System.currentTimeMillis();
+				System.out.println(tf4-t4);
 				break;
 			case 14:
+				control.orderByTypePetClubs();
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					System.out.println(control.getClubs().get(i).toString());
+				}
 				break;
 			case 15:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						control.getClubs().get(i).orderByNameOwners();
+						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
+					}
+				}
 				break;
 			case 16:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						control.getClubs().get(i).orderById();
+						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
+					}
+				}
 				break;
 			case 17:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						control.getClubs().get(i).orderByDate();
+						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
+					}
+				}
 				break;
 			case 18:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						control.getClubs().get(i).orderByTypePet();
+						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
+					}
+				}
 				break;
 			case 19:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
+							control.getClubs().get(i).getOwners().get(i).orderByNamepets();
+							System.out.println(control.getClubs().get(i).getOwners().get(j).getPets().get(j2).toString());
+						}
+					}
+				}
 				break;
 			case 20:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
+							control.getClubs().get(i).getOwners().get(i).orderById();
+							System.out.println(control.getClubs().get(i).getOwners().get(j).getPets().get(j2).toString());
+						}
+					}
+				}
 				break;
 			case 21:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
+							control.getClubs().get(i).getOwners().get(i).orderByGender();
+							System.out.println(control.getClubs().get(i).getOwners().get(j).getPets().get(j2).toString());
+						}
+					}
+				}
 				break;
 			case 22:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
+							control.getClubs().get(i).getOwners().get(i).orderByDate();
+							System.out.println(control.getClubs().get(i).getOwners().get(j).getPets().get(j2).toString());
+						}
+					}
+				}
 				break;
 			case 23:
+				for (int i = 0; i < control.getClubs().size(); i++) {
+					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
+						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
+							control.getClubs().get(i).getOwners().get(i).orderByTypePet();;
+							System.out.println(control.getClubs().get(i).getOwners().get(j).getPets().get(j2).toString());
+						}
+					}
+				}
 				break;
 			case 24:
 				out =true;
@@ -135,7 +252,7 @@ public class Main {
 		System.out.println("6. guardar mascotas");
 		System.out.println("7. eliminar un club");
 		System.out.println("8. eliminar un duenio");
-		System.out.println("9. eliminar un club");
+		System.out.println("9. eliminar una mascota");
 		System.out.println("10. ordenar club por fecha de creacion");
 		System.out.println("11. ordenar club por nombre");
 		System.out.println("12. ordenar club por id");

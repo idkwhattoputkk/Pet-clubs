@@ -48,6 +48,18 @@ public class Owner implements Serializable {
 		}
 		return msg;
 	}
+	public String removePetById(int ido) {
+		String msg="";
+		pets.remove(searchById(ido));
+		msg+="la mascota ha sido eliminado";
+		return msg;	
+	}
+	public String removePetByName(String nem) {
+		String msg="";
+		pets.remove(searchByName(nem));
+		msg+="la mascota ha sido eliminado";
+		return msg;	
+	}
 	// *********************************************************************
 	// *********************************************************************
 	//
@@ -214,6 +226,20 @@ public class Owner implements Serializable {
 			}
 		}
 	}
+	// bubble
+		public void orderByGender() {
+			for (int i = pets.size(); i > 0; i--) {
+				for (int j = 0; j < i - 1; j++) {
+					Pet c1 = (Pet) pets.get(j);
+					Pet c2 = (Pet) pets.get(j + 1);
+
+					if (c1.compareByGender(c2) > 0) {
+						pets.set(j, c2);
+						pets.set(j + 1, c1);
+					}
+				}
+			}
+		}
 	public int compareByName(Owner o) {
 		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
 		if (valueToComparate < 0) {
