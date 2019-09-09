@@ -8,12 +8,14 @@ import model.*;
 public class Main {
 	private Controller control;
 	private Scanner reader;
+	private long tInicial;
 
 	public Main() {
 		reader = new Scanner(System.in);
 		showWelcoming();
 		control = new Controller();
 		appManagement();
+		tInicial = System.currentTimeMillis();
 		}
 	private void appManagement() {
 		boolean out = false;
@@ -136,44 +138,60 @@ public class Main {
 				System.out.println(tf4-t4);
 				break;
 			case 14:
+				long t5=System.currentTimeMillis();
 				control.orderByTypePetClubs();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					System.out.println(control.getClubs().get(i).toString());
 				}
+				long tf5 =System.currentTimeMillis();
+				System.out.println(tf5-t5);
 				break;
 			case 15:
+				long t6 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						control.getClubs().get(i).orderByNameOwners();
 						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
 					}
 				}
+				long tf6 =System.currentTimeMillis();
+				System.out.println(tf6-t6);
 				break;
 			case 16:
+				long t7 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						control.getClubs().get(i).orderById();
 						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
 					}
 				}
+				long tf7=System.currentTimeMillis();
+				System.out.println(tf7-t7);
 				break;
 			case 17:
+				long t8 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						control.getClubs().get(i).orderByDate();
 						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
 					}
 				}
+				long tf8 =System.currentTimeMillis();
+				System.out.println(tf8-t8);
 				break;
 			case 18:
+				long t9 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						control.getClubs().get(i).orderByTypePet();
 						System.out.println(control.getClubs().get(i).getOwners().get(j).toString());
 					}
 				}
+				long tf9 =System.currentTimeMillis();
+				System.out.println(tf9-t9);
 				break;
 			case 19:
+				long t10 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
@@ -182,8 +200,11 @@ public class Main {
 						}
 					}
 				}
+				long tf10 =System.currentTimeMillis();
+				System.out.println(tf10-t10);
 				break;
 			case 20:
+				long t11 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
@@ -192,8 +213,11 @@ public class Main {
 						}
 					}
 				}
+				long tf11 =System.currentTimeMillis();
+				System.out.println(tf11-t11);
 				break;
 			case 21:
+				long t12 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
@@ -202,8 +226,11 @@ public class Main {
 						}
 					}
 				}
+				long tf12 =System.currentTimeMillis();
+				System.out.println(tf12-t12);
 				break;
 			case 22:
+				long t13 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
@@ -212,8 +239,11 @@ public class Main {
 						}
 					}
 				}
+				long tf13 =System.currentTimeMillis();
+				System.out.println(tf13-t13);
 				break;
 			case 23:
+				long t14 =System.currentTimeMillis();
 				for (int i = 0; i < control.getClubs().size(); i++) {
 					for (int j = 0; j < control.getClubs().get(i).getOwners().size(); j++) {
 						for (int j2 = 0; j2 < control.getClubs().get(i).getOwners().get(i).getPets().size(); j2++) {
@@ -222,9 +252,13 @@ public class Main {
 						}
 					}
 				}
+				long tf14 =System.currentTimeMillis();
+				System.out.println(tf14-t14);
 				break;
 			case 24:
 				out =true;
+				long tFinal=System.currentTimeMillis();
+				System.out.println(tFinal-tInicial);
 				break;
 			}
 		}
