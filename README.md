@@ -9,8 +9,8 @@ ___
 
 **Data**| *Documentation* | 
 --- | --- 
-[*Emmanuel Umaña.*](https://github.com/idkwhattoputkk) | [ `Documentation` ](https://docs.google.com/document/d/1tI85EQwc7_KuH0VfSeIHX9wY9fH2ehUgd0fG0zfRO1I/edit?usp=sharing)` | 
-A00351911 | **pdf files**
+[*Emmanuel Umaña.*](https://github.com/idkwhattoputkk) | `Documentation`  | 
+A00351911 | **pdf files are in the project**
 
 
 
