@@ -20,15 +20,14 @@ public class Club {
 		this.date = date;
 		this.id = id;
 		this.typePet = typePet;
-		
-		owners= new ArrayList<>();
+		owners = new ArrayList<Owner>();
 	}
 	public void saveOwners(String h){
 		File file = new File(h);
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-			for (Owner owner : owners) {
-				oos.writeObject(owner);
+			for (int i = 0; i < owners.size(); i++) {
+				oos.writeObject(owners.get(i));
 			}
 			oos.close();
 			}catch (IOException e) {
@@ -43,10 +42,11 @@ public class Club {
 	}
 	public void addOwner(int id, String fullName, String birthdate, String typePet) throws OwnerRepeatedException{
 		Owner o = new Owner(id, fullName, birthdate, typePet);
-		for (int i = 0; i < owners.size(); i++) {
-			if(owners.get(i).getId()==id) {
-				throw new OwnerRepeatedException("ya existe un duenio con ese id"+owners.get(i).toString());
-			}else {
+		for (int h = 0; h < owners.size(); h++) {
+			if(owners.get(h).getId()==id) {
+				throw new OwnerRepeatedException("ya existe un duenio con ese id");
+			}
+			else {
 				owners.add(o);
 			}
 		}
@@ -81,7 +81,7 @@ public class Club {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Owner mid = (Owner)owners.get(middle);
-			if(mid.compareByDate(toSearch)>0) {
+			if(mid.compareByDate(toSearch)==0) {
 				ended=true;
 			}else if(mid.compareByDate(toSearch)>0) {
 				end = middle-1;
@@ -121,7 +121,7 @@ public class Club {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Owner mid = (Owner)owners.get(middle);
-			if(mid.compareByTypePet(toSearch)>0) {
+			if(mid.compareByTypePet(toSearch)==0) {
 				ended=true;
 			}else if(mid.compareByTypePet(toSearch)>0) {
 				end = middle-1;
@@ -171,20 +171,23 @@ public class Club {
 		}
 		return s;
 	}
-	//insertion
 	public void orderByDate() {
-		for(int i=1;i<owners.size();i++) {
-			Owner toIterate = (Owner) owners.get(i);
-			boolean finished =false;
+		int init;
+		for(init=0;init<owners.size();init++) {
+			int lesser=init;
+			Owner less = (Owner)owners.get(init);
 			
-			for(int j=i;j>0 && !finished;j--) {
-				Owner fromNow=(Owner) owners.get(j-1);
-				if(fromNow.compareByDate(toIterate)>0) {
-					owners.set(j, fromNow);
-					owners.set(j-1, toIterate);
-				}else {
-					finished=true;
+			for(int i=init+1;i<owners.size();i++) {
+				Owner f =(Owner)owners.get(i);
+				if(f.compareByDate(less)<0) {
+					less=f;
+					lesser=i;
 				}
+			}
+			if(lesser!=init) {
+				Owner temp = (Owner)owners.get(init);
+				owners.set(init, less);
+				owners.set(lesser, temp);
 			}
 		}
 	}

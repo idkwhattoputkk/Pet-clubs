@@ -28,8 +28,8 @@ public class Owner implements Serializable {
 		File file = new File(h);
 		try {
 			ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
-			for (Pet pet : pets) {
-				oos.writeObject(pet);
+			for (int i = 0; i < pets.size(); i++) {
+				oos.writeObject(pets.get(i));
 			}
 			oos.close();
 			}catch (IOException e) {
@@ -40,7 +40,7 @@ public class Owner implements Serializable {
 		String msg="";
 		for (int i = 0; i < pets.size(); i++) {
 			if(pets.get(i).getName().equalsIgnoreCase(name)) {
-				throw new PetRepeatedException("ya tiene una mascota con el mismo nombre "+ pets.get(i).toString());
+				throw new PetRepeatedException("ya tiene una mascota con el mismo nombre ");
 			}else {
 				Pet p = new Pet(id,name, birthdate, gender, typePet);
 				pets.add(p);
@@ -90,7 +90,7 @@ public class Owner implements Serializable {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
-			if(mid.compareByDate(toSearch)>0) {
+			if(mid.compareByDate(toSearch)==0) {
 				ended=true;
 			}else if(mid.compareByDate(toSearch)>0) {
 				end = middle-1;
@@ -130,7 +130,7 @@ public class Owner implements Serializable {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
-			if(mid.compareByTypePet(toSearch)>0) {
+			if(mid.compareByTypePet(toSearch)==0) {
 				ended=true;
 			}else if(mid.compareByTypePet(toSearch)>0) {
 				end = middle-1;
@@ -149,7 +149,7 @@ public class Owner implements Serializable {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
-			if(mid.compareByGender(toSearch)>0) {
+			if(mid.compareByGender(toSearch)==0) {
 				ended=true;
 			}else if(mid.compareByGender(toSearch)>0) {
 				end = middle-1;

@@ -6,20 +6,19 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-
-import model.Club;
-import model.Controller;
+import model.Owner;
 import org.junit.jupiter.api.Test;
 
-class ControllerTest {
-	Controller control;
+class OwnerTest {
+
+	Owner o;
 	
 	void setUpScenary1(){
-		control = new Controller();
+		o = new Owner(0, "yonier", "10/10/2019", "gatos");
 		BufferedReader br = null;
 		FileReader fr = null;
 		try {
-			fr = new FileReader("data"+File.separator+"clubs.cvs");
+			fr = new FileReader("data"+File.separator+"pets.cvs");
 			br = new BufferedReader(fr);
 
 			String sCurrentLine;
@@ -28,7 +27,7 @@ class ControllerTest {
 				String[] parts = sCurrentLine.split(",");
 				for (int j = 0; j < parts.length; j++) {
 					int id = Integer.parseInt(parts[0]);
-					Club c= new Club(parts[1], parts[2], id, parts[3]);
+					
 				}
 			}
 
@@ -48,53 +47,58 @@ class ControllerTest {
 	}
 
 	@Test
-	void testAddClub() {
-		
+	void testAddPet() {
+		     
 	}
 
 	@Test
 	void testSearchByName() {
-		
+		     
 	}
 
 	@Test
 	void testSearchByDate() {
-		
+		     
 	}
 
 	@Test
 	void testSearchById() {
-		
+		     
 	}
 
 	@Test
-	void testSearchByTypePetClubs() {
-		
+	void testSearchByTypeOfPet() {
+		     
 	}
 
 	@Test
-	void testOrderByNameClubs() {
-		
+	void testSearchByGender() {
+		     
 	}
 
 	@Test
-	void testOrderByDateClubs() {
-		
+	void testOrderByDate() {
+		     
 	}
 
 	@Test
-	void testOrderByIdClubs() {
-		
+	void testOrderById() {
+		     
 	}
 
 	@Test
-	void testOrderByTypePetClubs() {
-		
+	void testOrderByTypePet() {
+		     
 	}
 
 	@Test
-	void testRemoveClubById() {
-		
+	void testOrderByNamepets() {
+		     
+	}
+
+	@Test
+	void testOrderByGender() {
+		     
 	}
 
 }
