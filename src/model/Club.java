@@ -83,10 +83,11 @@ public class Club {
 			Owner mid = (Owner)owners.get(middle);
 			if(mid.compareByDate(toSearch)==0) {
 				ended=true;
+				toSearch=mid;
 			}else if(mid.compareByDate(toSearch)>0) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;
@@ -102,18 +103,19 @@ public class Club {
 			int middle=(init+end)/2;
 			Owner mid = (Owner)owners.get(middle);
 			if(toSearch.getId()==mid.getId()) {
+				toSearch=mid;
 				ended=true;
 			}else if(toSearch.getId()<mid.getId()) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;
 	}
 	// binary search
 	public Owner searchByTypeOfPet(String tp) {
-		orderById();
+		orderByTypePet();
 		int init=0;
 		boolean ended = false;
 		int end = owners.size()-1;
@@ -122,11 +124,12 @@ public class Club {
 			int middle=(init+end)/2;
 			Owner mid = (Owner)owners.get(middle);
 			if(mid.compareByTypePet(toSearch)==0) {
+				toSearch=mid;
 				ended=true;
 			}else if(mid.compareByTypePet(toSearch)>0) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;

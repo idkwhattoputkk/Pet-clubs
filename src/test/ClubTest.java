@@ -16,7 +16,7 @@ class ClubTest {
 	
 	Club doggos;
 	
-	void setUpScenary1() throws OwnerRepeatedException{
+	void setUpScenery1() throws OwnerRepeatedException{
 		doggos = new Club("Cali doggueros", "10/110/2019", 0, "solo perros");
 		BufferedReader br = null;
         String line = "";
@@ -46,10 +46,10 @@ class ClubTest {
 
 	@Test
 	void testAddOwner() throws OwnerRepeatedException {
-		setUpScenary1();
+		setUpScenery1();
 	     try{
-	    	 setUpScenary1();
-	         doggos.addOwner(311,"Brunhilde","9/2/2018","Orange");
+	    	 setUpScenery1();
+	         doggos.addOwner(16,"Marty","2019/03/29","Orange");
 	         fail("no se lanzo la excepcion");
 	      }
 	      catch(OwnerRepeatedException ex){
@@ -63,8 +63,8 @@ class ClubTest {
 	@Test
 	void testSearchByName(){
 		try {
-		setUpScenary1();
-		assertTrue(doggos.searchByName("Winnie").getId()==814);
+		setUpScenery1();
+		assertTrue(doggos.searchByName("Merell").getId()==15);
 		} catch (OwnerRepeatedException e) {
 			e.printStackTrace();
 		}
@@ -73,9 +73,9 @@ class ClubTest {
 	@Test
 	void testSearchByDate() {
 		try {
-			setUpScenary1();
-//			assertTrue(doggos.searchByDate("17/01/2018").getFullName().equalsIgnoreCase("Edita"));
-			doggos.orderByDate();
+			setUpScenery1();
+			assertTrue(doggos.searchByDate("2019/07/27").getFullName().equalsIgnoreCase("Brander"));
+			
 		} catch (OwnerRepeatedException e) {
 			e.printStackTrace();
 		}
@@ -88,17 +88,38 @@ class ClubTest {
 
 	@Test
 	void testSearchByTypeOfPet() {
-		
+		try {
+			setUpScenery1();
+			assertTrue(doggos.searchByTypeOfPet("orange").getFullName().equalsIgnoreCase("Ezekiel"));
+		}catch(Exception e) {
+			e.getCause();
+		}
 	}
 
 	@Test
 	void testOrderByDate() {
-		
+		try {
+			setUpScenery1();
+			doggos.orderByDate();
+			assertTrue(doggos.getOwners().get(999).getBirthdate().equalsIgnoreCase("2019/09/10"));
+			assertTrue(doggos.getOwners().get(500).getBirthdate().equalsIgnoreCase("2019/03/10"));
+			assertTrue(doggos.getOwners().get(0).getBirthdate().equalsIgnoreCase("2018/09/11"));
+		} catch (OwnerRepeatedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test
 	void testOrderById() {
-		
+		try {
+			setUpScenery1();
+			doggos.orderById();
+			assertTrue(doggos.getOwners().get(0).getId()==1);
+			assertTrue(doggos.getOwners().get(500).getId()==501);
+			assertTrue(doggos.getOwners().get(999).getId()==1000);
+		} catch (OwnerRepeatedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test

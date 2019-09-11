@@ -91,11 +91,12 @@ public class Owner implements Serializable {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
 			if(mid.compareByDate(toSearch)==0) {
+				toSearch=mid;
 				ended=true;
 			}else if(mid.compareByDate(toSearch)>0) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;
@@ -115,7 +116,7 @@ public class Owner implements Serializable {
 			}else if(toSearch.getId()<mid.getId()) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;
@@ -131,11 +132,12 @@ public class Owner implements Serializable {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
 			if(mid.compareByTypePet(toSearch)==0) {
+				toSearch=mid;
 				ended=true;
 			}else if(mid.compareByTypePet(toSearch)>0) {
 				end = middle-1;
 			}else {
-				end= middle+1;
+				init= middle+1;
 			}
 		}
 		return toSearch;
