@@ -76,31 +76,51 @@ class ControllerTest {
 	@Test
 	void testSearchByTypePetClubs() {
 		setUpScenery1();
+		assertFalse(control.searchByTypePetClubs("Orange").getName().equalsIgnoreCase("Diannne"));
+		assertFalse(control.searchByTypePetClubs("Aquamarine").getName().equalsIgnoreCase("Norris"));
+		assertFalse(control.searchByTypePetClubs("yellow").getName().equalsIgnoreCase("Brennan"));
 	}
 
 	@Test
 	void testOrderByNameClubs() {
-		
+		setUpScenery1();
+		control.orderByNameClubs();
+		assertTrue(control.getClubs().get(0).getId()==690);
+		assertTrue(control.getClubs().get(501).getName().equalsIgnoreCase("Joannes"));
+		assertTrue(control.getClubs().get(999).getDate().equalsIgnoreCase("2019/01/17"));
 	}
 
 	@Test
 	void testOrderByDateClubs() {
-		
+		setUpScenery1();
+		control.orderByDateClubs();
+		assertTrue(control.getClubs().get(0).getDate().equalsIgnoreCase("2018/09/11"));
+		assertTrue(control.getClubs().get(501).getDate().equalsIgnoreCase("2019/03/10"));
 	}
 
 	@Test
 	void testOrderByIdClubs() {
-		
+		setUpScenery1();
+		control.orderByIdClubs();
+		assertEquals(control.getClubs().get(0).getId(),1);
+		assertEquals(control.getClubs().get(499).getId(),500);
+		assertEquals(control.getClubs().get(999).getId(),1000);
 	}
 
 	@Test
 	void testOrderByTypePetClubs() {
-		
+		setUpScenery1();
+		control.orderByTypePetClubs();
+		assertEquals(control.getClubs().get(0).getTypePet(),"Aquamarine");
+		assertEquals(control.getClubs().get(499).getTypePet(),"Mauv");
+		assertEquals(control.getClubs().get(999).getTypePet(),"Yellow");
 	}
 
 	@Test
 	void testRemoveClubById() {
-		
+		setUpScenery1();
+		control.removeClubById(1000);
+		assertEquals(control.getClubs().size(),999);
 	}
 
 }

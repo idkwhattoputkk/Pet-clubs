@@ -7,6 +7,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import model.Owner;
+import model.Pet;
+
 import org.junit.jupiter.api.Test;
 
 class OwnerTest {
@@ -27,6 +29,8 @@ class OwnerTest {
 				String[] parts = sCurrentLine.split(",");
 				for (int j = 0; j < parts.length; j++) {
 					int id = Integer.parseInt(parts[0]);
+					Pet p = new Pet(id,parts[1],parts[2],parts[3],parts[4]);
+					o.getPets().add(p);
 					
 				}
 			}

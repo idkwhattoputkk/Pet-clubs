@@ -45,7 +45,7 @@ class ClubTest {
 	}
 
 	@Test
-	void testAddOwner() throws OwnerRepeatedException {
+	void testAddOwner(){
 		setUpScenery1();
 	     try{
 	    	 setUpScenery1();
