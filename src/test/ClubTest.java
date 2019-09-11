@@ -16,8 +16,8 @@ class ClubTest {
 	
 	Club doggos;
 	
-	void setUpScenery1() throws OwnerRepeatedException{
-		doggos = new Club("Cali doggueros", "10/110/2019", 0, "solo perros");
+	void setUpScenery1(){
+		doggos = new Club("Cali doggueros", "2019/11/10", 0, "solo perros");
 		BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -62,79 +62,75 @@ class ClubTest {
 
 	@Test
 	void testSearchByName(){
-		try {
 		setUpScenery1();
 		assertTrue(doggos.searchByName("Merell").getId()==15);
-		} catch (OwnerRepeatedException e) {
-			e.printStackTrace();
-		}
 	}
 
 	@Test
 	void testSearchByDate() {
-		try {
-			setUpScenery1();
-			assertTrue(doggos.searchByDate("2019/07/27").getFullName().equalsIgnoreCase("Brander"));
-			
-		} catch (OwnerRepeatedException e) {
-			e.printStackTrace();
-		}
+		setUpScenery1();
+		assertTrue(doggos.searchByDate("2019/07/27").getFullName().equalsIgnoreCase("Brander"));
 	}
 
 	@Test
 	void testSearchById() {
-		
+		setUpScenery1();
+		doggos.orderById();
+		assertTrue(doggos.getOwners().get(999).getFullName().equalsIgnoreCase("Elora"));
+		assertTrue(doggos.getOwners().get(500).getFullName().equalsIgnoreCase("Farrah"));
+		assertTrue(doggos.getOwners().get(0).getFullName().equalsIgnoreCase("Laurena"));
 	}
 
 	@Test
 	void testSearchByTypeOfPet() {
-		try {
-			setUpScenery1();
-			assertTrue(doggos.searchByTypeOfPet("orange").getFullName().equalsIgnoreCase("Ezekiel"));
-		}catch(Exception e) {
-			e.getCause();
-		}
+		setUpScenery1();
+		assertTrue(doggos.searchByTypeOfPet("orange").getFullName().equalsIgnoreCase("Ezekiel"));
+	
 	}
 
 	@Test
 	void testOrderByDate() {
-		try {
-			setUpScenery1();
-			doggos.orderByDate();
-			assertTrue(doggos.getOwners().get(999).getBirthdate().equalsIgnoreCase("2019/09/10"));
-			assertTrue(doggos.getOwners().get(500).getBirthdate().equalsIgnoreCase("2019/03/10"));
-			assertTrue(doggos.getOwners().get(0).getBirthdate().equalsIgnoreCase("2018/09/11"));
-		} catch (OwnerRepeatedException e) {
-			e.printStackTrace();
-		}
+		setUpScenery1();
+		doggos.orderByDate();
+		assertTrue(doggos.getOwners().get(999).getBirthdate().equalsIgnoreCase("2019/09/10"));
+		assertTrue(doggos.getOwners().get(500).getBirthdate().equalsIgnoreCase("2019/03/10"));
+		assertTrue(doggos.getOwners().get(0).getBirthdate().equalsIgnoreCase("2018/09/11"));
 	}
 
 	@Test
 	void testOrderById() {
-		try {
-			setUpScenery1();
-			doggos.orderById();
-			assertTrue(doggos.getOwners().get(0).getId()==1);
-			assertTrue(doggos.getOwners().get(500).getId()==501);
-			assertTrue(doggos.getOwners().get(999).getId()==1000);
-		} catch (OwnerRepeatedException e) {
-			e.printStackTrace();
-		}
+		setUpScenery1();
+		doggos.orderById();
+		assertTrue(doggos.getOwners().get(0).getId()==1);
+		assertTrue(doggos.getOwners().get(500).getId()==501);
+		assertTrue(doggos.getOwners().get(999).getId()==1000);
+		
 	}
 
 	@Test
 	void testOrderByTypePet() {
+		setUpScenery1();
+		doggos.orderByTypePet();
+		assertTrue(doggos.getOwners().get(0).getId()==9);
+		assertTrue(doggos.getOwners().get(500).getId()==274);
+		assertTrue(doggos.getOwners().get(999).getId()==1000);
 		
 	}
 
 	@Test
 	void testOrderByNameOwners() {
-		
+		setUpScenery1();
+		doggos.orderByNameOwners();
+		assertTrue(doggos.getOwners().get(0).getBirthdate().equalsIgnoreCase("2019/05/09"));
+		assertTrue(doggos.getOwners().get(500).getBirthdate().equalsIgnoreCase("2019/03/22"));
+		assertTrue(doggos.getOwners().get(999).getBirthdate().equalsIgnoreCase("2019/08/13"));
 	}
 
 	@Test
 	void testRemoveOwnerById() {
-		
+		setUpScenery1();
+		doggos.removeOwnerById(16);
+		assertTrue(doggos.searchByName("Marty")==null);
 	}
 
 }

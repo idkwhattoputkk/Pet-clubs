@@ -27,7 +27,7 @@ public class Controller {
 		String msg="";
 		Club c = new Club(n, d, id, t);
 		clubs.add(c);
-		msg+="el club "+c.toString()+" se anadio corretcamente";
+		msg+=" se anadio corretcamente";
 		return msg;
 	}
 	//adding a new owner
