@@ -111,9 +111,10 @@ public class Owner implements Serializable {
 		while(init<= end && !ended) {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
-			if(toSearch.getId()==mid.getId()) {
+			if(mid.getId()==toSearch.getId()) {
+				toSearch=mid;
 				ended=true;
-			}else if(toSearch.getId()<mid.getId()) {
+			}else if(mid.getId()>toSearch.getId()) {
 				end = middle-1;
 			}else {
 				init= middle+1;
@@ -143,7 +144,7 @@ public class Owner implements Serializable {
 		return toSearch;
 	}
 	public Pet searchByGender(String g) {
-		orderById();
+		orderByGender();
 		int init=0;
 		boolean ended = false;
 		int end = pets.size()-1;
@@ -152,6 +153,7 @@ public class Owner implements Serializable {
 			int middle=(init+end)/2;
 			Pet mid = (Pet)pets.get(middle);
 			if(mid.compareByGender(toSearch)==0) {
+				toSearch=mid;
 				ended=true;
 			}else if(mid.compareByGender(toSearch)>0) {
 				end = middle-1;
@@ -229,19 +231,19 @@ public class Owner implements Serializable {
 		}
 	}
 	// bubble
-		public void orderByGender() {
-			for (int i = pets.size(); i > 0; i--) {
-				for (int j = 0; j < i - 1; j++) {
-					Pet c1 = (Pet) pets.get(j);
-					Pet c2 = (Pet) pets.get(j + 1);
+	public void orderByGender() {
+		for (int i = pets.size(); i > 0; i--) {
+			for (int j = 0; j < i - 1; j++) {
+				Pet c1 = (Pet) pets.get(j);
+				Pet c2 = (Pet) pets.get(j + 1);
 
-					if (c1.compareByGender(c2) > 0) {
-						pets.set(j, c2);
-						pets.set(j + 1, c1);
-					}
+				if (c1.compareByGender(c2) > 0) {
+					pets.set(j, c2);
+					pets.set(j + 1, c1);
 				}
 			}
 		}
+	}
 	public int compareByName(Owner o) {
 		int valueToComparate = fullName.compareToIgnoreCase(o.fullName);
 		if (valueToComparate < 0) {
